@@ -15,6 +15,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .serializers import UserSerializer
 
 
+
 class GetUserView(APIView):
     def post(self, request):
         key = request.data.get('token', '')
@@ -32,6 +33,7 @@ class LogoutView(APIView):
             pass
 
         return Response({})
+
 
 
 class RegisterView(APIView):
