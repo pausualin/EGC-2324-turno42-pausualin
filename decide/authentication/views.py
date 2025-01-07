@@ -4,6 +4,7 @@ from rest_framework.status import (
         HTTP_400_BAD_REQUEST,
         HTTP_401_UNAUTHORIZED
 )
+
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
