@@ -10,12 +10,12 @@ jobs:
 
     strategy:
       matrix:
-        postgres-version: [14.9, 15]  # Especificamos las dos versiones de PostgreSQL
+        postgres-version: ['14.9', '15']
 
     services:
       postgres:
-        image: postgres:${{ matrix.postgres-version }}
-       env:
+        image: postgres: ${{ matrix.postgres-version }}
+        env:
           POSTGRES_USER: decide
           POSTGRES_PASSWORD: decide
           POSTGRES_DB: decide
