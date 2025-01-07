@@ -4,6 +4,7 @@ from rest_framework.status import (
         HTTP_400_BAD_REQUEST,
         HTTP_401_UNAUTHORIZED
 )
+
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
@@ -14,11 +15,13 @@ from django.core.exceptions import ObjectDoesNotExist
 from .serializers import UserSerializer
 
 
+
 class GetUserView(APIView):
     def post(self, request):
         key = request.data.get('token', '')
         tk = get_object_or_404(Token, key=key)
         return Response(UserSerializer(tk.user, many=False).data)
+
 
 
 class LogoutView(APIView):
@@ -31,6 +34,7 @@ class LogoutView(APIView):
             pass
 
         return Response({})
+
 
 
 class RegisterView(APIView):

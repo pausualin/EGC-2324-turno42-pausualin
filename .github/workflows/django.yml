@@ -43,8 +43,23 @@ jobs:
         cd decide
         coverage run --branch --source=. ./manage.py test  --keepdb 
         coverage xml 
-    - name: Codacy Coverage Reporter
-      uses: codacy/codacy-coverage-reporter-action@v1
-      with:
+  
+  cobertura:
+
+    runs-on: ubuntu-latests
+    needs: build 
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage-report
+      
+      - name: Codacy Coverage Reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: decide/coverage.xml 
+          coverage-reports: decide/coverage.xml
+    
+
