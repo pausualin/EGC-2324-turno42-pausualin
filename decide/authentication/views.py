@@ -23,6 +23,7 @@ class GetUserView(APIView):
         return Response(UserSerializer(tk.user, many=False).data)
 
 
+
 class LogoutView(APIView):
     def post(self, request):
         key = request.data.get('token', '')
