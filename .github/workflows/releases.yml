@@ -1,0 +1,23 @@
+name: Automatic Releases
+
+on: [push]
+  
+
+jobs:
+  releases:
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Set up GitHub CLI
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Create a release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run:
+        gh release create ${{ github.ref_name }} \
+          --title "Release ${{ github.ref_name }}" \
+          --notes "This is an automatic release for version ${{ github.ref_name }}"
+
+
